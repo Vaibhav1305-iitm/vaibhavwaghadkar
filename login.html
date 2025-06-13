@@ -2,132 +2,139 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login | MyLearning</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
     }
 
     body, html {
       height: 100%;
-      overflow-y: auto;
+      overflow-x: hidden;
     }
 
+    /* Video background */
     .video-bg {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
       z-index: -1;
-      filter: brightness(0.5);
+      object-fit: cover;
     }
 
-    header {
-      text-align: center;
-      color: white;
-      padding: 40px 20px;
-      font-size: 2.5rem;
-      font-weight: bold;
-    }
-
-    .login-container {
+    /* Login box */
+    .login-box {
       position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: rgba(255, 255, 255, 0.95);
-      padding: 25px 30px;
-      border-radius: 15px;
-      width: 300px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      z-index: 10;
+      top: 30px;
+      right: 30px;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      max-width: 300px;
     }
 
-    .login-container h2 {
+    .login-box h2 {
       margin-bottom: 20px;
-      font-size: 22px;
       text-align: center;
+      color: #333;
     }
 
-    .login-container input {
+    .login-box input {
       width: 100%;
       padding: 10px;
-      margin-bottom: 15px;
-      border: none;
-      border-radius: 8px;
-      background-color: #f1f1f1;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
 
-    .login-container button {
+    .login-box button {
       width: 100%;
       padding: 10px;
+      margin-top: 12px;
       background-color: #007bff;
       color: white;
       border: none;
-      border-radius: 8px;
-      font-weight: bold;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s ease;
     }
 
-    .login-container button:hover {
+    .login-box button:hover {
       background-color: #0056b3;
     }
 
+    /* Scrollable sections */
     .section {
-      padding: 80px 20px;
-      text-align: center;
+      height: 100vh;
+      padding: 80px 40px;
       color: white;
-      font-size: 1.8rem;
-      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .section:nth-child(even) {
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.6);
     }
 
-    footer {
-      background-color: rgba(0, 0, 0, 0.6);
-      text-align: center;
-      padding: 20px;
-      color: white;
-      font-size: 0.9rem;
+    .section h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .section p {
+      font-size: 1.2rem;
+      max-width: 600px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Background Video -->
+  <!-- Background video -->
   <video autoplay muted loop class="video-bg">
-    <source src="https://cdn.pixabay.com/video/2023/03/27/157259-815593658_large.mp4" type="video/mp4">
+    <source src="https://cdn.pixabay.com/video/2023/01/17/146368-796297371_tiny.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
 
-  <!-- Login Box -->
-  <div class="login-container">
+  <!-- Login box -->
+  <div class="login-box">
     <h2>Login</h2>
-    <input type="email" placeholder="Email" />
-    <input type="password" placeholder="Password" />
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
     <button>Login</button>
   </div>
 
-  <!-- Header -->
-  <header>Welcome to MyLearning</header>
+  <!-- Scrollable content -->
+  <div class="section">
+    <h1>Welcome to Class 6</h1>
+    <p>Start your learning journey with fun and interactive lessons!</p>
+  </div>
+  <div class="section">
+    <h1>Class 7</h1>
+    <p>Continue building your skills with exciting challenges.</p>
+  </div>
+  <div class="section">
+    <h1>Class 8</h1>
+    <p>Explore science, math and more in a dynamic environment.</p>
+  </div>
+  <div class="section">
+    <h1>Class 9</h1>
+    <p>Prepare for board-level subjects with engaging content.</p>
+  </div>
+  <div class="section">
+    <h1>Class 10</h1>
+    <p>Boost your preparation with practice tests and guidance.</p>
+  </div>
+  <div class="section">
+    <h1>Career Roadmap</h1>
+    <p>Discover what’s next – NEET, JEE, UPSC, Design, or Business? Get inspired!</p>
+  </div>
 
-  <!-- Scrollable Sections -->
-  <section class="section">Class 6: Foundation Building</section>
-  <section class="section">Class 7: Conceptual Skills</section>
-  <section class="section">Class 8: Science + Reasoning</section>
-  <section class="section">Class 9: NTSE & Olympiads</section>
-  <section class="section">Class 10: Board + Competitive Start</section>
-  <section class="section">Career Roadmap: NEET, JEE, UPSC, NDA</section>
-
-  <!-- Footer -->
-  <footer>&copy; 2025 MyLearning Platform | All Rights Reserved</footer>
 </body>
 </html>
