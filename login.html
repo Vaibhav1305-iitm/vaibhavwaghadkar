@@ -2,168 +2,132 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MyLearning – Classes & Login</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | MyLearning</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
-    html { scroll-behavior: smooth; }
-    body { overflow-x: hidden; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-    /* Background video */
-    #bg-video {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
+    body, html {
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      filter: brightness(0.6);
-      z-index: -100;
+      z-index: -1;
+      filter: brightness(0.5);
     }
 
-    /* Login icon */
-    #login-icon {
-      position: fixed; top: 20px; right: 20px;
-      background: rgba(255,255,255,0.3); padding:10px;
-      border-radius:50%; font-size:1.8rem;
-      cursor:pointer; z-index:100;
+    header {
+      text-align: center;
+      color: white;
+      padding: 40px 20px;
+      font-size: 2.5rem;
+      font-weight: bold;
     }
 
-    /* Scroll sections */
-    section {
-      min-height: 100vh; padding: 60px 20px;
-      color: #fff; text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-    .cards {
-      display: flex; flex-wrap: wrap;
-      justify-content: center; gap:20px;
-    }
-    .card {
-      background: rgba(0,0,0,0.3);
-      padding:20px; border-radius:12px;
-      width:220px;
+    .login-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 25px 30px;
+      border-radius: 15px;
+      width: 300px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      z-index: 10;
     }
 
-    /* Modal */
-    .modal {
-      display: none; position: fixed;
-      top:0; left:0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      justify-content: center; align-items: center;
-      overflow-y: auto; z-index: 200;
+    .login-container h2 {
+      margin-bottom: 20px;
+      font-size: 22px;
+      text-align: center;
     }
-    .modal-content {
-      position: relative;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      padding: 30px; border-radius:12px;
-      width: 90%; max-width:360px;
-      color: #fff;
+
+    .login-container input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 8px;
+      background-color: #f1f1f1;
     }
-    .modal-close {
-      position: absolute; top:15px; right:15px;
-      font-size:1.4rem; cursor: pointer;
+
+    .login-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
-    .modal-content input {
-      width: 100%; padding:12px; margin:10px 0;
-      border:none; border-radius:8px;
+
+    .login-container button:hover {
+      background-color: #0056b3;
     }
-    .modal-content button {
-      width:100%; padding:12px; margin-top:15px;
-      border:none; border-radius:8px;
-      background: #007aff; color:#fff;
-      font-weight:600; cursor:pointer;
+
+    .section {
+      padding: 80px 20px;
+      text-align: center;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 600;
     }
-    .toggle-line { margin-top:15px; font-size:0.9rem; text-align:center; }
-    .toggle-line a { color:#fff; text-decoration:underline; cursor:pointer; }
+
+    .section:nth-child(even) {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.6);
+      text-align: center;
+      padding: 20px;
+      color: white;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Video Background -->
-  <video autoplay muted loop id="bg-video">
-    <source src="https://cdn.coverr.co/videos/coverr-technology-globe-9397/1080p.mp4" type="video/mp4">
-    Your browser doesn't support HTML5 video.
+  <!-- Background Video -->
+  <video autoplay muted loop class="video-bg">
+    <source src="https://cdn.pixabay.com/video/2023/03/27/157259-815593658_large.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
   </video>
 
-  <!-- Login Icon -->
-  <div id="login-icon">🔒</div>
-
-  <!-- Modal -->
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="modal-close" onclick="closeModal()">×</span>
-      <h2 id="form-title">Login</h2>
-      <input type="email" id="email" placeholder="Email" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <button id="action-btn">Login</button>
-      <div class="toggle-line">
-        <span id="toggle-text">Don't have an account?</span>
-        <a id="toggle-link" onclick="toggleForm()">Sign Up</a>
-      </div>
-    </div>
+  <!-- Login Box -->
+  <div class="login-container">
+    <h2>Login</h2>
+    <input type="email" placeholder="Email" />
+    <input type="password" placeholder="Password" />
+    <button>Login</button>
   </div>
 
-  <!-- Content Sections -->
-  <section id="class6">
-    <h2>Class 6</h2>
-    <div class="cards">
-      <div class="card"><h3>Subjects</h3><p>Marathi, Hindi, English, Math, Science</p></div>
-      <div class="card"><h3>Exam Prep</h3><p>Homi Bhabha, Olympiad</p></div>
-    </div>
-  </section>
-  <!-- Add similar sections for class7..class10 and roadmap -->
+  <!-- Header -->
+  <header>Welcome to MyLearning</header>
 
-  <!-- Firebase + JS -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  <!-- Scrollable Sections -->
+  <section class="section">Class 6: Foundation Building</section>
+  <section class="section">Class 7: Conceptual Skills</section>
+  <section class="section">Class 8: Science + Reasoning</section>
+  <section class="section">Class 9: NTSE & Olympiads</section>
+  <section class="section">Class 10: Board + Competitive Start</section>
+  <section class="section">Career Roadmap: NEET, JEE, UPSC, NDA</section>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAktGHbEfYBx7kQ38ehn2ef43fLObrVOsM",
-      authDomain: "mylearningauth.firebaseapp.com",
-      projectId: "mylearningauth",
-      storageBucket: "mylearningauth.appspot.com",
-      messagingSenderId: "458548585723",
-      appId: "1:458548585723:web:c0d11dab56a13f155afc5e",
-      measurementId: "G-BP6R7ZBYMB"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    const icon = document.getElementById('login-icon');
-    const modal = document.getElementById('modal');
-    const formTitle = document.getElementById('form-title');
-    const actionBtn = document.getElementById('action-btn');
-    const toggleText = document.getElementById('toggle-text');
-    const toggleLink = document.getElementById('toggle-link');
-    let isLogin = true;
-
-    icon.onclick = () => modal.style.display = 'flex';
-    window.closeModal = () => modal.style.display = 'none';
-
-    toggleLink.onclick = () => {
-      isLogin = !isLogin;
-      formTitle.textContent = isLogin ? 'Login' : 'Sign Up';
-      actionBtn.textContent = isLogin ? 'Login' : 'Sign Up';
-      toggleText.textContent = isLogin ? "Don't have an account?" : "Already have an account?";
-      toggleLink.textContent = isLogin ? 'Sign Up' : 'Login';
-    };
-
-    actionBtn.onclick = () => {
-      const email = document.getElementById('email').value;
-      const pass = document.getElementById('password').value;
-      if (isLogin) {
-        signInWithEmailAndPassword(auth, email, pass)
-          .then(() => location.href = 'index.html')
-          .catch(e => alert('Login failed: ' + e.message));
-      } else {
-        createUserWithEmailAndPassword(auth, email, pass)
-          .then(() => { alert('Account created. Now login.'); toggleLink.click(); })
-          .catch(e => alert('Signup failed: ' + e.message));
-      }
-    };
-  </script>
+  <!-- Footer -->
+  <footer>&copy; 2025 MyLearning Platform | All Rights Reserved</footer>
 </body>
 </html>
