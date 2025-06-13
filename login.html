@@ -1,120 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login - MyLearning</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Login – MyLearning</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+    body,html { height:100%; overflow:hidden; }
+
+    #bg-video {
+      position:fixed; top:0; left:0;
+      width:100%; height:100%; object-fit:cover;
+      filter: brightness(0.6);
+      z-index:-1;
     }
 
-    body, html {
-      height: 100%;
-      overflow: hidden;
+    .intro {
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      text-align:center; color:#fff; width:90%; max-width:600px;
+      backdrop-filter:blur(5px);
+      background:rgba(0,0,0,0.3);
+      padding:30px; border-radius:12px;
     }
 
-    .video-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      min-height: 100%;
-      z-index: -1;
-      object-fit: cover;
-      filter: brightness(0.7);
+    .intro h1 { font-size:2.5rem; margin-bottom:20px; }
+    .intro p  { font-size:1.1rem; }
+
+    #login-icon {
+      position:fixed; top:20px; right:20px;
+      background:rgba(255,255,255,0.2); padding:10px; font-size:1.5rem;
+      border-radius:50%; color:#fff; cursor:pointer; z-index:10;
     }
 
-    .login-container {
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .modal {
+      display:none; position:fixed; top:0; left:0;
+      width:100%; height:100%; background:rgba(0,0,0,0.7);
+      overflow-y:auto; justify-content:center; align-items:center; padding:40px;
     }
 
-    .login-box {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      padding: 30px;
-      border-radius: 15px;
-      width: 350px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.5);
-      color: white;
+    .modal-content {
+      background:rgba(255,255,255,0.1); backdrop-filter:blur(10px);
+      border-radius:12px; padding:30px; width:100%; max-width:380px;
+      box-shadow:0 0 30px rgba(0,0,0,0.5); color:#fff;
     }
 
-    .login-box h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-weight: 600;
+    .modal-content h2 { margin-bottom:20px; font-weight:600; }
+    .modal-content input {
+      width:100%; padding:12px; margin:10px 0; border:none;
+      border-radius:8px;
     }
 
-    input[type="email"],
-    input[type="password"] {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 8px;
-      outline: none;
+    .modal-content button {
+      width:100%; padding:12px;
+      background:#007aff; border:none; border-radius:8px;
+      color:#fff; font-weight:600; margin-top:15px; cursor:pointer;
+      transition:0.3s ease;
     }
 
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 15px;
-      border: none;
-      border-radius: 8px;
-      background-color: #007aff;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s ease;
+    .modal-content button:hover { background:#0058cc; }
+
+    .modal-content .toggle {
+      text-align:center; margin-top:15px;
     }
 
-    button:hover {
-      background-color: #0058cc;
+    .modal-content .toggle a {
+      color:#fff; text-decoration:underline; cursor:pointer;
     }
 
-    .small-link {
-      margin-top: 10px;
-      text-align: center;
-      font-size: 0.9em;
-    }
-
-    .small-link a {
-      color: #fff;
-      text-decoration: underline;
+    .modal-content .close-btn {
+      position:absolute; right:20px; top:20px;
+      font-size:1.5rem; cursor:pointer;
     }
   </style>
 </head>
 <body>
 
-  <!-- Background Video -->
-  <video autoplay muted loop class="video-bg">
-    <source src="https://cdn.coverr.co/videos/coverr-working-on-a-new-project-2406/1080p.mp4" type="video/mp4">
-    Your browser does not support the video tag.
+  <!-- Video background from Coverr CDN -->
+  <video autoplay muted loop id="bg-video">
+    <source src="https://cdn.coverr.co/videos/coverr-technology-globe-9397/1080p.mp4" type="video/mp4">
+    Your browser doesn't support the video tag.
   </video>
 
-  <!-- Login Box -->
-  <div class="login-container">
-    <div class="login-box">
-      <h2>Login to MyLearning</h2>
-      <input type="email" id="email" placeholder="Email" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <button onclick="login()">Login</button>
-      <div class="small-link">
-        Don't have an account? <a href="#" onclick="signup()">Sign up</a>
+  <!-- Intro Text -->
+  <div class="intro">
+    <h1>MyLearning — Your Complete Study Companion</h1>
+    <p>Explore classes 6 through 12 with curated notes, quizzes, video lessons, and interactive tools. Learn smarter, track progress, and succeed!</p>
+  </div>
+
+  <!-- Login Icon -->
+  <div id="login-icon">🔒</div>
+
+  <!-- Popup Modal -->
+  <div id="login-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">×</span>
+      <h2 id="form-title">Login to Learn</h2>
+      <input type="email" id="email" placeholder="Email" required/>
+      <input type="password" id="password" placeholder="Password" required/>
+      <button id="action-btn" onclick="login()">Login</button>
+      <div class="toggle">
+        <span id="toggle-text">Don't have an account?</span>
+        <a id="toggle-link" onclick="toggleForm()">Sign Up</a>
       </div>
     </div>
   </div>
 
-  <!-- Firebase + Script -->
+  <!-- Firebase + Logic -->
   <script type="module">
-    // Firebase Config
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -131,34 +125,39 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // Login Function
-    window.login = function() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+    const loginIcon = document.getElementById('login-icon');
+    const modal     = document.getElementById('login-modal');
+    const closeBtn  = document.querySelector('.close-btn');
+    const formTitle = document.getElementById('form-title');
+    const actionBtn = document.getElementById('action-btn');
+    const toggleTxt = document.getElementById('toggle-text');
+    const toggleLink= document.getElementById('toggle-link');
 
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          alert("Login Successful!");
-          window.location.href = "index.html"; // Home page after login
-        })
-        .catch((error) => {
-          alert("Login Failed: " + error.message);
-        });
-    };
+    let isLogin = true;
 
-    // Signup Function
-    window.signup = function() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+    loginIcon.onclick = () => { modal.style.display = 'flex'; };
+    closeBtn.onclick  = () => { modal.style.display = 'none'; };
 
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          alert("Signup Successful!");
-          window.location.href = "index.html"; // After signup, go to home
-        })
-        .catch((error) => {
-          alert("Signup Failed: " + error.message);
-        });
+    function toggleForm() {
+      isLogin = !isLogin;
+      formTitle.textContent = isLogin ? 'Login to Learn' : 'Create Account';
+      actionBtn.textContent = isLogin ? 'Login' : 'Sign Up';
+      toggleTxt.textContent = isLogin ? "Don't have an account?" : "Already have an account?";
+      toggleLink.textContent = isLogin ? 'Sign Up' : 'Login';
+    }
+
+    actionBtn.onclick = () => {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      if (isLogin) {
+        signInWithEmailAndPassword(auth, email, password)
+          .then(() => location.href = 'index.html')
+          .catch(e => alert('Login failed: ' + e.message));
+      } else {
+        createUserWithEmailAndPassword(auth, email, password)
+          .then(() => alert('Account created! Please login.'))
+          .catch(e => alert('Signup failed: ' + e.message));
+      }
     };
   </script>
 </body>
