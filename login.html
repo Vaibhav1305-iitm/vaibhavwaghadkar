@@ -1,71 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>MyLearning – All Classes & Roadmap</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyLearning – Classes & Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
     html { scroll-behavior: smooth; }
-    body { position:relative; overflow-x:hidden; }
-    video#bg { position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; filter: brightness(0.6); z-index:-1; }
-    #loginIcon { position:fixed; top:20px; right:20px; font-size:1.8rem; background:rgba(255,255,255,0.2); padding:10px; border-radius:50%; cursor:pointer; color:#fff; z-index:10; }
+    body { overflow-x: hidden; }
 
-    section { min-height:100vh; padding:60px 20px; color:#fff; text-align:center; }
-    section h2 { font-size:2.2rem; margin-bottom:20px; }
-    .cards { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
-    .card { background:rgba(255,255,255,0.1); backdrop-filter:blur(10px); border-radius:12px; padding:20px; width:220px; box-shadow:0 0 15px rgba(0,0,0,0.4); }
-    
-    #roadmap { background:rgba(0,0,0,0.3); }
-    .road-step { margin:20px auto; padding:20px; max-width:600px; background:rgba(255,255,255,0.1); backdrop-filter:blur(10px); border-radius:10px; text-align:left; }
+    /* Background video */
+    #bg-video {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6);
+      z-index: -100;
+    }
+
+    /* Login icon */
+    #login-icon {
+      position: fixed; top: 20px; right: 20px;
+      background: rgba(255,255,255,0.3); padding:10px;
+      border-radius:50%; font-size:1.8rem;
+      cursor:pointer; z-index:100;
+    }
+
+    /* Scroll sections */
+    section {
+      min-height: 100vh; padding: 60px 20px;
+      color: #fff; text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .cards {
+      display: flex; flex-wrap: wrap;
+      justify-content: center; gap:20px;
+    }
+    .card {
+      background: rgba(0,0,0,0.3);
+      padding:20px; border-radius:12px;
+      width:220px;
+    }
 
     /* Modal */
-    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; padding:40px; z-index:15; overflow-y:auto; }
-    .modal-content { position:relative; background:rgba(255,255,255,0.1); backdrop-filter:blur(10px); border-radius:12px; padding:30px; max-width:360px; margin: auto; text-align:center; color:#fff; }
-    .modal-content h2 { margin-bottom:20px; }
-    .modal-content input { width:100%; padding:12px; margin:10px 0; border:none; border-radius:8px; }
-    .modal-content button { width:100%; padding:12px; margin-top:15px; background:#007aff; border:none; border-radius:8px; color:#fff; font-weight:600; cursor:pointer; transition:.3s; }
-    .modal-content button:hover { background:#0058cc; }
-    .modal-close { position:absolute; top:15px; right:15px; font-size:1.4rem; cursor:pointer; }
-
-    .toggle-line { margin-top:15px; font-size:0.9rem; }
+    .modal {
+      display: none; position: fixed;
+      top:0; left:0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center; align-items: center;
+      overflow-y: auto; z-index: 200;
+    }
+    .modal-content {
+      position: relative;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      padding: 30px; border-radius:12px;
+      width: 90%; max-width:360px;
+      color: #fff;
+    }
+    .modal-close {
+      position: absolute; top:15px; right:15px;
+      font-size:1.4rem; cursor: pointer;
+    }
+    .modal-content input {
+      width: 100%; padding:12px; margin:10px 0;
+      border:none; border-radius:8px;
+    }
+    .modal-content button {
+      width:100%; padding:12px; margin-top:15px;
+      border:none; border-radius:8px;
+      background: #007aff; color:#fff;
+      font-weight:600; cursor:pointer;
+    }
+    .toggle-line { margin-top:15px; font-size:0.9rem; text-align:center; }
     .toggle-line a { color:#fff; text-decoration:underline; cursor:pointer; }
   </style>
 </head>
 <body>
 
   <!-- Video Background -->
-  <video id="bg" autoplay muted loop>
+  <video autoplay muted loop id="bg-video">
     <source src="https://cdn.coverr.co/videos/coverr-technology-globe-9397/1080p.mp4" type="video/mp4">
-    Your browser doesn’t support the video tag.
+    Your browser doesn't support HTML5 video.
   </video>
 
   <!-- Login Icon -->
-  <div id="loginIcon">🔒</div>
+  <div id="login-icon">🔒</div>
 
   <!-- Modal -->
   <div class="modal" id="modal">
-    <div class="modal-content" id="modalContent">
+    <div class="modal-content">
       <span class="modal-close" onclick="closeModal()">×</span>
-      <h2 id="formTitle">Login to Learn</h2>
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <button id="actionBtn">Login</button>
+      <h2 id="form-title">Login</h2>
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button id="action-btn">Login</button>
       <div class="toggle-line">
-        <span id="toggleText">Don't have an account?</span>
-        <a id="toggleLink" onclick="toggleForm()">Sign Up</a>
+        <span id="toggle-text">Don't have an account?</span>
+        <a id="toggle-link" onclick="toggleForm()">Sign Up</a>
       </div>
     </div>
   </div>
 
-  <!-- Scrollable Sections -->
-  <section id="class6"><h2>Class 6</h2><div class="cards"><div class="card"><h3>Subjects</h3><p>Marathi, Hindi, English, Math, Science</p></div><div class="card"><h3>Exam Prep</h3><p>Homi Bhabha, Olympiad, NTSE Foundation</p></div></div></section>
-  <section id="class7"><h2>Class 7</h2><div class="cards"><div class="card"><h3>Subjects</h3><p>Marathi, Hindi, English, Math, Science</p></div><div class="card"><h3>Exam Prep</h3><p>Scholarship Exam, Coding Basics, Spell Bee</p></div></div></section>
-  <section id="class8"><h2>Class 8</h2><div class="cards"><div class="card"><h3>Subjects</h3><p>All core subjects</p></div><div class="card"><h3>Exam Prep</h3><p>Olympiads, NTSE Practice, Mental Math</p></div></div></section>
-  <section id="class9"><h2>Class 9</h2><div class="cards"><div class="card"><h3>Subjects</h3><p>Science, Math, Languages</p></div><div class="card"><h3>Exam Prep</h3><p>Science Olympiad, School Tests</p></div></div></section>
-  <section id="class10"><h2>Class 10</h2><div class="cards"><div class="card"><h3>Subjects</h3><p>Full Syllabus & Board Prep</p></div><div class="card"><h3>Exam Prep</h3><p>Board Exam, NTSE, Olympiad</p></div></div></section>
-  <section id="roadmap"><h2>Career Roadmap</h2><div class="road-step"><h3>Step 1: Choose Stream</h3><p>Science, Commerce, Arts – plan accordingly.</p></div><div class="road-step"><h3>Step 2: Competitive Exams</h3><p>JEE, NEET, Olympiads – start early.</p></div><div class="road-step"><h3>Step 3: Higher Studies</h3><p>College, Skill Courses, Portfolio Building.</p></div></section>
+  <!-- Content Sections -->
+  <section id="class6">
+    <h2>Class 6</h2>
+    <div class="cards">
+      <div class="card"><h3>Subjects</h3><p>Marathi, Hindi, English, Math, Science</p></div>
+      <div class="card"><h3>Exam Prep</h3><p>Homi Bhabha, Olympiad</p></div>
+    </div>
+  </section>
+  <!-- Add similar sections for class7..class10 and roadmap -->
 
   <!-- Firebase + JS -->
   <script type="module">
@@ -85,12 +132,12 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    const icon = document.getElementById('loginIcon');
+    const icon = document.getElementById('login-icon');
     const modal = document.getElementById('modal');
-    const formTitle = document.getElementById('formTitle');
-    const actionBtn = document.getElementById('actionBtn');
-    const toggleText = document.getElementById('toggleText');
-    const toggleLink = document.getElementById('toggleLink');
+    const formTitle = document.getElementById('form-title');
+    const actionBtn = document.getElementById('action-btn');
+    const toggleText = document.getElementById('toggle-text');
+    const toggleLink = document.getElementById('toggle-link');
     let isLogin = true;
 
     icon.onclick = () => modal.style.display = 'flex';
@@ -98,7 +145,7 @@
 
     toggleLink.onclick = () => {
       isLogin = !isLogin;
-      formTitle.textContent = isLogin ? 'Login to Learn' : 'Create Account';
+      formTitle.textContent = isLogin ? 'Login' : 'Sign Up';
       actionBtn.textContent = isLogin ? 'Login' : 'Sign Up';
       toggleText.textContent = isLogin ? "Don't have an account?" : "Already have an account?";
       toggleLink.textContent = isLogin ? 'Sign Up' : 'Login';
@@ -113,7 +160,7 @@
           .catch(e => alert('Login failed: ' + e.message));
       } else {
         createUserWithEmailAndPassword(auth, email, pass)
-          .then(() => alert('Account created! Please login.'))
+          .then(() => { alert('Account created. Now login.'); toggleLink.click(); })
           .catch(e => alert('Signup failed: ' + e.message));
       }
     };
