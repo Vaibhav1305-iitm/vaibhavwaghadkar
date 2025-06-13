@@ -1,138 +1,264 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MyLearning – Login & Info</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
-    html { scroll-behavior:smooth; }
-    body, html { height:100%; overflow-x:hidden; }
-
-    /* Animated video background from CDN */
-    .bg-video {
-      position:fixed; top:0; left:0;
-      width:100%; height:100%; object-fit:cover;
-      z-index:-1; filter:brightness(0.5);
-    }
-
-    /* Fixed login box in top-right */
-    .login-box {
-      position:fixed; top:20px; right:20px;
-      background:rgba(255,255,255,0.9);
-      padding:20px 25px; border-radius:12px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.2);
-      max-width:280px; z-index:10;
-    }
-    .login-box h2 { margin-bottom:15px; font-weight:600; color:#333; }
-    .login-box input {
-      width:100%; padding:10px; margin:8px 0;
-      border:1px solid #ccc; border-radius:6px;
-    }
-    .login-box button {
-      width:100%; padding:10px; margin-top:12px;
-      border:none; border-radius:6px;
-      background:#007bff; color:#fff; cursor:pointer;
-      font-weight:600;
-    }
-    .login-box button:hover { background:#0056b3; }
-
-    /* Scrollable content sections */
-    .section {
-      height:100vh; padding:80px 40px;
-      color:#fff; display:flex; align-items:center;
-    }
-    .section:nth-child(even) { background:rgba(0,0,0,0.3); }
-    .section h1 { font-size:2.3rem; margin-bottom:15px; }
-    .section p { font-size:1.1rem; max-width:600px; }
-
-    footer {
-      height:100px; display:flex;
-      align-items:center; justify-content:center;
-      background:rgba(0,0,0,0.4); color:#fff;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyLearning - Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-
-  <!-- Video background using CDN -->
-  <video autoplay muted loop class="bg-video">
-    <source src="https://cdn.coverr.co/videos/coverr-technology-globe-9397/1080p.mp4" type="video/mp4">
-    Your browser doesn't support HTML5 video.
-  </video>
-
-  <!-- Login form -->
-  <div class="login-box">
-    <h2>Login to Learn</h2>
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="password" id="password" placeholder="Password" required />
-    <button id="loginBtn">Login</button>
-  </div>
-
-  <!-- Scrollable class information -->
-  <div class="section">
-    <div>
-      <h1>Class 6</h1>
-      <p>Basics of language, math and science, with Olympiad practice & foundation learning.</p>
+    <!-- Video Background -->
+    <div class="video-background">
+        <video autoplay muted loop id="bg-video">
+            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+            <!-- Fallback for browsers that don't support video -->
+            <div class="video-fallback"></div>
+        </video>
+        <div class="video-overlay"></div>
     </div>
-  </div>
-  <div class="section">
-    <div>
-      <h1>Class 7</h1>
-      <p>Build stronger conceptual understanding and prepare for scholarship exams.</p>
-    </div>
-  </div>
-  <div class="section">
-    <div>
-      <h1>Class 8</h1>
-      <p>Dive deeper into STEAM subjects with critical thinking exercises & coding concepts.</p>
-    </div>
-  </div>
-  <div class="section">
-    <div>
-      <h1>Class 9</h1>
-      <p>Focus on board exam patterns, NTSE foundation, and Olympiad preparation.</p>
-    </div>
-  </div>
-  <div class="section">
-    <div>
-      <h1>Class 10</h1>
-      <p>Board readiness with full syllabus coverage and targeted exam preparation.</p>
-    </div>
-  </div>
-  <div class="section">
-    <div>
-      <h1>Career Roadmap</h1>
-      <p>Choose your path: JEE, NEET, UPSC, Design, or Skill Learning – with expert guidance.</p>
-    </div>
-  </div>
 
-  <footer>&copy; 2025 MyLearning Platform – Empowering Students</footer>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content" data-aos="fade-up">
+                <h1>Welcome to MyLearning Platform</h1>
+                <p>Your journey to academic excellence starts here</p>
+                <button id="openLoginPopup" class="hero-login-btn">
+                    <span>Login / Sign Up</span>
+                    <i class="fas fa-sign-in-alt"></i>
+                </button>
+                <div class="scroll-indicator">
+                    <i class="fas fa-chevron-down"></i>
+                    <span>Scroll to explore</span>
+                </div>
+            </div>
+        </section>
 
-  <!-- Firebase Auth logic -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        <!-- Class Sections -->
+        <section class="class-section" data-aos="fade-right">
+            <div class="class-card">
+                <div class="class-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="class-content">
+                    <h3>Class 6</h3>
+                    <p>Foundation building with interactive lessons in Mathematics, Science, English, and Social Studies. Start your learning journey with engaging content designed for young minds.</p>
+                    <ul>
+                        <li>Interactive Math Problems</li>
+                        <li>Science Experiments</li>
+                        <li>English Grammar & Literature</li>
+                        <li>History & Geography</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    const config = {
-      apiKey: "AIzaSyAktGHbEfYBx7kQ38ehn2ef43fLObrVOsM",
-      authDomain: "mylearningauth.firebaseapp.com",
-      projectId: "mylearningauth",
-      storageBucket: "mylearningauth.appspot.com",
-      messagingSenderId: "458548585723",
-      appId: "1:458548585723:web:c0d11dab56a13f155afc5e",
-      measurementId: "G-BP6R7ZBYMB"
-    };
-    const app = initializeApp(config);
-    const auth = getAuth(app);
+        <section class="class-section" data-aos="fade-left">
+            <div class="class-card">
+                <div class="class-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="class-content">
+                    <h3>Class 7</h3>
+                    <p>Advanced concepts in core subjects with practical applications. Develop critical thinking skills through challenging problems and real-world examples.</p>
+                    <ul>
+                        <li>Advanced Mathematics</li>
+                        <li>Physics & Chemistry Basics</li>
+                        <li>Creative Writing</li>
+                        <li>Civics & Economics</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    document.getElementById('loginBtn').onclick = () => {
-      const email = document.getElementById('email').value;
-      const pass = document.getElementById('password').value;
-      signInWithEmailAndPassword(auth, email, pass)
-        .then(() => window.location.href = 'home.html')
-        .catch(e => alert('Login failed: ' + e.message));
-    };
-  </script>
+        <section class="class-section" data-aos="fade-right">
+            <div class="class-card">
+                <div class="class-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <div class="class-content">
+                    <h3>Class 8</h3>
+                    <p>Comprehensive curriculum focusing on analytical skills and conceptual understanding. Prepare for higher secondary education with confidence.</p>
+                    <ul>
+                        <li>Algebra & Geometry</li>
+                        <li>Physical Sciences</li>
+                        <li>Literature Analysis</li>
+                        <li>Indian Constitution</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="class-section" data-aos="fade-left">
+            <div class="class-card">
+                <div class="class-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="class-content">
+                    <h3>Class 9</h3>
+                    <p>Board exam preparation begins here. Master fundamental concepts that form the foundation for Class 10 and beyond.</p>
+                    <ul>
+                        <li>Advanced Mathematics</li>
+                        <li>Physics, Chemistry & Biology</li>
+                        <li>English Literature</li>
+                        <li>Social Sciences</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="class-section" data-aos="fade-right">
+            <div class="class-card">
+                <div class="class-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="class-content">
+                    <h3>Class 10</h3>
+                    <p>Board exam excellence with comprehensive test preparation, mock exams, and expert guidance. Achieve your academic goals with confidence.</p>
+                    <ul>
+                        <li>Board Exam Preparation</li>
+                        <li>Mock Tests & Practice Papers</li>
+                        <li>Doubt Clearing Sessions</li>
+                        <li>Career Guidance</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Roadmap Section -->
+        <section class="career-section" data-aos="zoom-in">
+            <div class="career-header">
+                <h2>Career Roadmap</h2>
+                <p>Choose your path to success</p>
+            </div>
+            
+            <div class="career-grid">
+                <div class="career-card" data-aos="flip-left">
+                    <div class="career-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3>NEET</h3>
+                    <p>Medical entrance preparation with comprehensive Biology, Physics, and Chemistry coverage.</p>
+                    <div class="career-features">
+                        <span>Biology Focus</span>
+                        <span>Mock Tests</span>
+                        <span>Expert Faculty</span>
+                    </div>
+                </div>
+                
+                <div class="career-card" data-aos="flip-right">
+                    <div class="career-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>JEE</h3>
+                    <p>Engineering entrance preparation with advanced Mathematics, Physics, and Chemistry.</p>
+                    <div class="career-features">
+                        <span>Advanced Math</span>
+                        <span>Problem Solving</span>
+                        <span>IIT Faculty</span>
+                    </div>
+                </div>
+                
+                <div class="career-card" data-aos="flip-left">
+                    <div class="career-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3>UPSC</h3>
+                    <p>Civil services preparation with current affairs, history, geography, and general studies.</p>
+                    <div class="career-features">
+                        <span>Current Affairs</span>
+                        <span>Essay Writing</span>
+                        <span>Interview Prep</span>
+                    </div>
+                </div>
+                
+                <div class="career-card" data-aos="flip-right">
+                    <div class="career-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Design</h3>
+                    <p>Creative design courses including UI/UX, Graphic Design, and Product Design.</p>
+                    <div class="career-features">
+                        <span>Creative Skills</span>
+                        <span>Portfolio Building</span>
+                        <span>Industry Projects</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Popup Login Form -->
+    <div class="popup-container" id="loginPopupContainer">
+        <div class="login-popup">
+            <button class="close-btn" id="closeLoginPopup">&times;</button>
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h2>MyLearning</h2>
+            </div>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <span>Login</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                
+                <div class="form-footer">
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <p>Don't have an account? <a href="#" id="signupLink">Sign up</a></p>
+                </div>
+            </form>
+            
+            <!-- Sign Up Form (Hidden by default) -->
+            <form id="signupForm" style="display: none;">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="signupName" placeholder="Full Name" required>
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="signupEmail" placeholder="Email Address" required>
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="signupPassword" placeholder="Password" required>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <span>Sign Up</span>
+                    <i class="fas fa-user-plus"></i>
+                </button>
+                
+                <div class="form-footer">
+                    <p>Already have an account? <a href="#" id="loginLink">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
+
