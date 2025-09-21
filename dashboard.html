@@ -1,75 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="dashboard-cards">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Dashboard</title>
-  <link rel="stylesheet" href="dashboard-style.css">
-</head>
-<link rel="stylesheet" href="dashboard-style.css">
-
-
-<body>
-  <div class="dashboard-box">
-    <h2>Welcome, Vaibhav!</h2>
-    <p>Here's your personalized dashboard to manage studies smartly.</p>
-
-    <div class="dashboard-cards">
-      <div class="card">
-        <h3>My Batches</h3>
-        <ul>
-          <li>JEE-Advanced Batch-2025</li>
-          <li>Python-advanced Batcg</li>
-          <li>Web Development</li>
-          <li>IIT Madras Math-1</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Weekly Time Table</h3>
-        <p>Check your daily routine and update your study slots.</p>
-      </div>
-
-      <div class="card">
-  <h3>My Videos</h3>
-
-  <!-- Video Thumbnails / Buttons -->
-  <div class="video-list">
-    <button onclick="playVideo('mHfIfA4msiE')">📺 Video 1</button>
-    <button onclick="playVideo('SJ5MNoWO_N4')">📺 Video 2</button>
-    <button onclick="playVideo('i7ncaz0APOM')">📺 Video 3</button>
-  </div>
-
-  <!-- Video Player -->
-  <iframe id="videoPlayer" width="100%" height="250"
-    src=""
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen></iframe>
-</div>
-
-<script>
-  function playVideo(videoId) {
-    document.getElementById("videoPlayer").src =
-      "https://www.youtube.com/embed/" + videoId;
-  }
-</script>
-
-
-
-      <div class="card">
-        <h3>Performance Chart</h3>
-        <p>Track your progress coming soon...</p>
-      </div>
+  <div class="card neet">
+    <img src="path/to/your/dna-icon.png" alt="NEET Icon" class="card-icon">
+    <h3>NEET</h3>
+    <div class="card-tags">
+      <span class="card-tag">class 11</span>
+      <span class="card-tag">class 12</span>
+      <span class="card-tag">Dropper</span>
     </div>
+    <a href="#" class="explore-link">Explore Category →</a>
   </div>
-</body>
 
-</html>
+  <div class="card iit-jee">
+    <img src="path/to/your/atom-icon.png" alt="IIT JEE Icon" class="card-icon">
+    <h3>IIT JEE</h3>
+    <div class="card-tags">
+      <span class="card-tag">class 11</span>
+      <span class="card-tag">class 12</span>
+      <span class="card-tag">Dropper</span>
+    </div>
+    <a href="#" class="explore-link">Explore Category →</a>
+  </div>
 
+  <div class="card school-prep">
+    <img src="path/to/your/backpack-icon.png" alt="School Prep Icon" class="card-icon">
+    <h3>School Preparation</h3>
+    <div class="card-tags">
+      <span class="card-tag">class 6</span>
+      <span class="card-tag">class 7</span>
+      <span class="card-tag">class 8</span>
+      <span class="card-tag">More +</span>
+    </div>
+    <a href="#" class="explore-link">Explore Category →</a>
+  </div>
 
+  <div class="card upsc">
+    <img src="path/to/your/people-icon.png" alt="UPSC Icon" class="card-icon">
+    <h3>UPSC</h3>
+    <a href="#" class="explore-link">Explore Category →</a>
+  </div>
+  
+  <div class="card govt-jobs">
+      <img src="path/to/your/building-icon.png" alt="Govt Jobs Icon" class="card-icon">
+      <h3>Govt Job Exams</h3>
+      <div class="card-tags">
+          <span class="card-tag">SSC</span>
+          <span class="card-tag">Banking</span>
+          <span class="card-tag">Teaching</span>
+      </div>
+      <a href="#" class="explore-link">Explore Category →</a>
+  </div>
+  
+  <div class="card defence">
+      <img src="path/to/your/shield-icon.png" alt="Defence Icon" class="card-icon">
+      <h3>Defence</h3>
+      <div class="card-tags">
+          <span class="card-tag">NDA</span>
+          <span class="card-tag">CDS</span>
+          <span class="card-tag">AFCAT</span>
+      </div>
+      <a href="#" class="explore-link">Explore Category →</a>
+  </div>
 
-
-
-
+</div>
